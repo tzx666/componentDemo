@@ -1,3 +1,5 @@
+include ':webViewspecfic'
+include ':webViewprotool'
 include ':Newsprotool'
 include ':News'
 include ':base'

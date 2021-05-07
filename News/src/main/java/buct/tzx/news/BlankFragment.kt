@@ -23,6 +23,8 @@ import buct.tzx.news.model.NewsModel
 import buct.tzx.news.model.NewsReq
 import buct.tzx.routerannotation.Router
 import buct.tzx.routerapi.BuctRouter
+import buct.tzx.servicemanager_api.ServiceManager
+import buct.tzx.webviewprotool.WebViewService
 import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -49,6 +51,7 @@ class BlankFragment : Fragment() {
         res.adapter = adapter
         adapter.setOnItemClickListener { adapter, view, position ->
             Toast.makeText(context,(adapter.getItem(position) as NewsModel).path, Toast.LENGTH_SHORT).show()
+            ServiceManager.getInstance().getService<WebViewService>(WebViewService::class.java).loadUrl(activity,(adapter.getItem(position) as NewsModel).path)
         }
         BuctBus.getInstance().register(this)
         button.setOnClickListener {
